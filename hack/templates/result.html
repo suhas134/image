@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Result Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="page-shell result-shell">
+    <header class="app-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow">Result summary</p>
+          <h1>Impact Analysis</h1>
+          <p class="hero-copy">Your latest footprint, trees required, and eco-friendly projection.</p>
+        </div>
+        <a class="button button-secondary" href="/">Back to tracker</a>
+      </div>
+    </header>
+
+    <main class="result-grid">
+      <section class="card result-summary-card">
+        <h2>Result overview</h2>
+        <div id="no-data" class="alert-box hidden">No result available yet. Return to the tracker and submit an analysis.</div>
+        <div id="result-content" class="result-content hidden">
+          <div class="result-row">
+            <img id="result-image" class="preview-image" src="" alt="Captured or uploaded item">
+            <div class="result-details">
+              <p class="label">Detected object</p>
+              <h3 id="object-name">-</h3>
+              <p class="label">Daily carbon footprint</p>
+              <p id="carbon-value" class="value"></p>
+              <p class="label">Yearly carbon</p>
+              <p id="yearly-value" class="value"></p>
+              <p class="label">Trees required</p>
+              <p id="trees-required" class="value"></p>
+              <p class="label">Recommendation</p>
+              <p id="recommendation" class="recommendation"></p>
+            </div>
+          </div>
+          <div class="explanation-block">
+            <h3>Analysis notes</h3>
+            <p id="explanation"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card chart-card">
+        <h2>Daily carbon profile</h2>
+        <canvas id="pie-chart"></canvas>
+      </section>
+
+      <section class="card chart-card">
+        <h2>Current vs eco-friendly</h2>
+        <canvas id="bar-chart"></canvas>
+        <div class="yearly-pill">
+          <span>Yearly projection</span>
+          <strong id="yearly-projection"></strong>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

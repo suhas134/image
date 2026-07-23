@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered Carbon Footprint Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="app-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow">AI-powered climate demo</p>
+          <h1>Carbon Footprint Tracker</h1>
+          <p class="hero-copy">Track transport, energy, food habits, and analyze photos with camera capture.</p>
+        </div>
+        <a class="button button-secondary" href="/result">View latest result</a>
+      </div>
+    </header>
+
+    <main class="content-grid">
+      <section class="card spacing-card">
+        <div class="card-title">
+          <h2>Manual Activity Input</h2>
+          <span class="badge badge-green">Core</span>
+        </div>
+        <form id="manual-form" class="form-grid">
+          <label>
+            Transport type
+            <select name="transport_type" required>
+              <option value="car">Car</option>
+              <option value="bike">Bike</option>
+              <option value="bus">Bus</option>
+              <option value="walk">Walk</option>
+            </select>
+          </label>
+          <label>
+            Distance (km)
+            <input type="number" name="transport_distance" min="0" step="0.1" value="10" required>
+          </label>
+          <label>
+            Electricity usage (units)
+            <input type="number" name="electricity_usage" min="0" step="0.1" value="8" required>
+          </label>
+          <label>
+            Food habit
+            <select name="food_habit" required>
+              <option value="veg">Veg</option>
+              <option value="non-veg">Non-veg</option>
+            </select>
+          </label>
+          <button class="button button-primary" type="submit">Calculate footprint</button>
+        </form>
+      </section>
+
+      <section class="card spacing-card">
+        <div class="card-title">
+          <h2>Upload an Image</h2>
+          <span class="badge badge-blue">Upload</span>
+        </div>
+        <p>Upload a JPG or PNG to simulate object detection and carbon impact.</p>
+        <form id="upload-form" class="form-grid">
+          <input type="file" name="image" accept="image/png, image/jpeg" required>
+          <button class="button button-primary" type="submit">Analyze image</button>
+        </form>
+      </section>
+
+      <section class="card spacing-card">
+        <div class="card-title">
+          <h2>Capture with Camera</h2>
+          <span class="badge badge-orange">Camera</span>
+        </div>
+        <p>Use your device camera to capture an item and estimate its footprint.</p>
+        <button id="open-camera" class="button button-primary">Open camera 📷</button>
+
+        <div id="camera-panel" class="camera-panel hidden">
+          <video id="camera-video" autoplay playsinline></video>
+          <button id="capture-photo" class="button button-secondary">Capture image</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="status-message" class="status-box hidden"></div>
+
+    <div class="loader-overlay hidden" id="loader-overlay">
+      <div class="loader-card">
+        <p>Analyzing environmental impact…</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
